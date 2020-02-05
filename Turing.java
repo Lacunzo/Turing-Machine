@@ -14,7 +14,7 @@ public class Turing {
 	public int GetState() {
 		return state;
 	}
-	@SuppressWarnings("unused")
+	
 	private boolean execute(char action) {
 		boolean ret=false;
 		switch(action) {
@@ -28,7 +28,7 @@ public class Turing {
 		break;
 		case 'v' : ret = t.read();
 		break;
-		default : ret = false;
+		default : ret = true;
 		}
 		return ret;
 	}
@@ -55,15 +55,18 @@ public class Turing {
 	public boolean process(Programm p) {
 		this.state = 1;
 		t.goStart();
-		for(int i=0; i < t.length() ; i++) {
-			/**/
+		while(state!=0) {
+			Instruction ins = p.getInstruction(state, t.read());
+			for(int j=0; j < ins.getAction().length() ; j++) {
+				if (execute(ins.getAction().charAt(j))) {
+					return true;
+				}
+			}
+			this.state = ins.getEf();
 		}
 		return false;
 	}
-	
-	
-	
-	
+
 	public String toString() {
 		return t.toString();
 	}
