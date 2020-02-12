@@ -14,5 +14,6 @@ public class Tp1 {
 		 prog.add(3,0,false,"le");
 		 tm.process(prog);
 		 System.out.print(tm);
+		 /*exercices supplémentaire suppr et paire*/
 	}
 }
